@@ -21,7 +21,7 @@ function Login() {
 		if (formData.email.includes("@") && formData.password.length > 6) {
 			try {
 				const response = await axios.post(
-					"http://localhost:5000/api/auth/login",
+					"https://blog-backend-p4ud.onrender.com/api/auth/login",
 					{
 						email: formData.email,
 						password: formData.password,

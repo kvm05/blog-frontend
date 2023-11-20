@@ -15,13 +15,13 @@ export default function BlogContent({ title, content, id, setModal, getBlogs, ed
 		try {
 			if(edit){
                 const response = await axios.patch(
-					`http://localhost:5000/api/blog/${id}`,
+					`https://blog-backend-p4ud.onrender.com/api/blog/${id}`,
 					formData
 				);
             }
             else{
                 const response = await axios.post(
-					"http://localhost:5000/api/blog",
+					"https://blog-backend-p4ud.onrender.com/api/blog",
 					{
 						title: formData.title,
 						content: formData.content,

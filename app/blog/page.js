@@ -12,7 +12,9 @@ export default function Blog(){
     const [edit, setEdit] = useState(false)
     async function getBlogs(){
 		try {
-			const response = await axios.get("http://localhost:5000/api/blog");
+			const response = await axios.get(
+				"https://blog-backend-p4ud.onrender.com/api/blog"
+			);
 			setAllBlogs(response.data);
 		} catch (error) {
 			console.log(error);
@@ -21,7 +23,7 @@ export default function Blog(){
     async function deleteBlog(){
         try {
             const response = await axios.delete(
-				`http://localhost:5000/api/blog/${blog?._id}`
+				`https://blog-backend-p4ud.onrender.com/api/blog/${blog?._id}`
 			);
             getBlogs();
         } catch (error) {
@@ -46,7 +48,7 @@ export default function Blog(){
 								id={blog._id}
 								setModal={setModal}
 								getBlogs={getBlogs}
-								edit={edit}
+								edit={true}
 							/>
 						</Modal>
 					) : (
@@ -72,9 +74,9 @@ export default function Blog(){
 				</button>
 			</div>
 			<div className="w-full grid grid-cols-3 gap-5">
-				{allBlogs?.map((blog) => {
+				{allBlogs?.map((blog, index) => {
 					return (
-						<div className="border-2 rounded-md p-3 flex flex-col space-y-3">
+						<div className="border-2 rounded-md p-3 flex flex-col space-y-3" key={index}>
 							<div className="text-xl font-semibold">
 								{blog.title}
 							</div>
@@ -84,6 +86,7 @@ export default function Blog(){
 									className="px-2 py-1 border-2 rounded-sm"
 									onClick={() => {
 										setModal(true);
+										setEdit(true)
 										setBlog(blog);
 									}}
 								>
